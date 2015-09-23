@@ -57,8 +57,8 @@ int-int
 
 flag | argument | description
 --- | --- | ---
--c| None | Consider case (ignored by default)
--l| int| Specified a window of 'int' words preceding the match to be returned as part of the concordance.
+-c| None | Consider case (case is ignored by default)
+-l| int| Specifies a window of 'int' words preceding the match to be returned as part of the concordance.
 -r| int| Like '-l' for words following the match.
 -q| None| Prints total number of input records and matches when EOF is reached.
 -x| string| Does *not* wrap the next argument as '^argument$' when compiling it as a regular expression (i.e., if this option is not used, the search terms *will be* wrapped and matched from beginning to end, with no partial matches).
