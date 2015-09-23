@@ -27,7 +27,7 @@ For detailed usage instructions, please see below.
 The script requires NLTK[4]'s 'wordpunct_tokenize' function; if unavailable, the code can be modified to use an alternative word tokenization method that takes a string as input and returns a list of strings (word tokens) as output.
 
 
-#	References
+###	References
 
 [1] https://en.wikipedia.org/wiki/Key_Word_in_Context
 
@@ -43,7 +43,7 @@ The script requires NLTK[4]'s 'wordpunct_tokenize' function; if unavailable, the
 
 ##	Usage
 
-#	Basic usage
+###	Basic usage
 
 If reading from standard input:
 
@@ -53,7 +53,7 @@ Where *interval* has the form:
 int-int
 
 
-#	Options
+###	Options
 
 flag | argument | description
 --- | --- | ---
