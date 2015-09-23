@@ -16,10 +16,9 @@ This script provides an efficient dynamic-programming implementation for extract
 	great 2-4 cinema
 
 will match any sequences
-
-1. starting with *great*,
-2. followed by at least 2 words and at most 4 words, 
-3. and immediately followed by *cinema*.
+- starting with *great*,
+- followed by at least 2 words and at most 4 words, 
+- and immediately followed by *cinema*.
 
 For instance: *great night at the cinema* and *great for that cinema*, but not **great for cinema*.
 
@@ -56,9 +55,8 @@ int-int
 
 #	Options
 
-`-c 	None	Consider case (ignored by default)
--l	int	Specified a window of 'int' words preceding the match to be returned as part of the concordance.
--r	int	Like '-l' for words following the match.
--q	None	Prints total number of input records and matches when EOF is reached.
--x	string	Wraps the next argument as '^argument$' when compiling it into as a regular expression to be searched.
-`
+	-c 	None	Consider case (ignored by default)
+	-l	int	Specified a window of 'int' words preceding the match to be returned as part of the concordance.
+	-r	int	Like '-l' for words following the match.
+	-q	None	Prints total number of input records and matches when EOF is reached.
+	-x	string	Wraps the next argument as '^argument$' when compiling it into as a regular expression to be searched.
