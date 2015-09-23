@@ -55,8 +55,10 @@ int-int
 
 #	Options
 
-	-c 	None	Consider case (ignored by default)
-	-l	int	Specified a window of 'int' words preceding the match to be returned as part of the concordance.
-	-r	int	Like '-l' for words following the match.
-	-q	None	Prints total number of input records and matches when EOF is reached.
-	-x	string	Wraps the next argument as '^argument$' when compiling it into as a regular expression to be searched.
+flag | argument | description
+--- | --- | ---
+-c| None | Consider case (ignored by default)
+-l| int| Specified a window of 'int' words preceding the match to be returned as part of the concordance.
+-r| int| Like '-l' for words following the match.
+-q| None| Prints total number of input records and matches when EOF is reached.
+-x| string| Wraps the next argument as '^argument$' when compiling it into as a regular expression to be searched.
