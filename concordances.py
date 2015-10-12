@@ -8,6 +8,13 @@ from tools import (
 
 from Concordancer import Concordancer
 
+def decode(line):
+    try:
+        return line.decode('utf-8')
+    except Exception:
+        return line
+    
+
 if __name__ == '__main__':
     args = parseargs(sys.argv)
     concordancer = Concordancer(args)
@@ -19,7 +26,7 @@ if __name__ == '__main__':
         rd = sys.stdin
     for line in rd:
         lines += 1
-        tokens = tokenizer(line.decode('utf-8').strip())
+        tokens = tokenizer(decode(line).strip())
         concordances = concordancer(tokens)
         for concordance in concordances:
             matches += 1
