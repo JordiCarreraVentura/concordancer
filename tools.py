@@ -4,7 +4,7 @@ import re
 
 from nltk import wordpunct_tokenize as tokenizer
 
-INTERVAL = re.compile('^([0-9]+)?\-([0-9]+)?$')
+INTERVAL = re.compile(r'^([0-9]+)?-([0-9]+)?$')
 
 def parseargs(args):
     #    file             arg1
@@ -23,38 +23,53 @@ def parseargs(args):
         'counts': False
     }
     
-    args = args[1:]
+    args = list(args[1:])
+
+    def next_value(flag):
+        if not args:
+            raise SystemExit("error: option '%s' requires an argument" % flag)
+        return args.pop(0)
+
     while args:
         arg = args.pop(0)
-        if arg[0] == '-' and len(arg) > 2:
+        if arg[:1] == '-' and len(arg) > 2:
             pargs = ['-%s' % char for char in arg[1:]]
         else:
             pargs = [arg]
-        for arg in pargs:
-            interval = INTERVAL.match(arg)
-            if arg == '-c':
+        for parg in pargs:
+            interval = INTERVAL.match(parg)
+            if parg == '-c':
                 arguments['ignorecase'] = False
-            elif arg == '-l':
-                arguments['left'] = int(args.pop(0))
-            elif arg == '-r':
-                arguments['right'] = int(args.pop(0))
-            elif os.path.exists(arg):
-                arguments['input'] = arg
-            elif arg == '-x':
-                arguments['targets'].append((True, args.pop(0)))
-            elif arg == '-q':
+            elif parg == '-l':
+                arguments['left'] = to_int(next_value('-l'), '-l')
+            elif parg == '-r':
+                arguments['right'] = to_int(next_value('-r'), '-r')
+            elif os.path.exists(parg):
+                arguments['input'] = parg
+            elif parg == '-x':
+                arguments['targets'].append((True, next_value('-x')))
+            elif parg == '-q':
                 arguments['counts'] = True
             elif interval:
                 arguments['targets'].append((False, interval))
             else:
-                arguments['targets'].append((True, wrap_word(arg)))
+                arguments['targets'].append((True, wrap_word(parg)))
     
     compile(arguments)
     
     return arguments
 
 
+def to_int(value, flag):
+    try:
+        return int(value)
+    except ValueError:
+        raise SystemExit("error: option '%s' expects an integer, got %r" % (flag, value))
+
+
 def wrap_word(string):
+    if not string:
+        return string
     if string[0] != '^':
         string = '^%s' % string
     if string[-1] != '$':

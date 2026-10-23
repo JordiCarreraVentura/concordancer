@@ -39,7 +39,9 @@ class Concordancer:
             up_to = int(up_to)
         else:
             up_to = 3
-        return at_least, up_to
+        # `up_to` is inclusive (documented as "at most N words"), but the
+        # interval is consumed as a half-open slice [start:end], so add one.
+        return at_least, up_to + 1
 
     def __call__(self, tokens):
         focus = 0
@@ -83,7 +85,7 @@ class Concordancer:
                     new_matches.append(cp(matches) + new_match)
                 else:
                     forward_matches = cp(matches) + new_match
-                    onset = prev_onset + i + 1
+                    onset = prev_onset + i + start + 1
                     newer_matches = self.concordance(
                         forward_matches, focus + 1, onset, space
                     )
